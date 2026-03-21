@@ -18,12 +18,16 @@ Jikan API (https://docs.api.jikan.moe)
 
 # Technologies Used
 1.HTML
+
 2.CSS
+
 3.JavaScript (Fetch API)
+
 4.Array methods (map, filter, sort)
 
 # How to Run
 1.Clone the repository
+
 2.Open index.html in your browser
 
 # Purpose
