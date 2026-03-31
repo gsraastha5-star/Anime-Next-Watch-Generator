@@ -1,0 +1,207 @@
+/* RESET */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #0b0f19;
+    color: white;
+}
+
+/* NAVBAR */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: #111827;
+}
+
+.navbar h2 {
+    margin: 0;
+    color: #38bdf8;
+}
+
+.navbar input {
+    padding: 8px;
+    border-radius: 6px;
+    border: none;
+    width: 220px;
+    background: #1f2937;
+    color: white;
+}
+
+.navbar button {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 6px;
+    background: #38bdf8;
+    color: black;
+    cursor: pointer;
+}
+
+/* HERO SECTION (ANIME BANNER) */
+.hero {
+    margin: 20px;
+    height: 300px;
+    border-radius: 15px;
+
+    background: 
+        linear-gradient(to top, rgba(0,0,0,0.8), transparent),
+        url('https://static.toiimg.com/thumb/msid-108824901,width-1280,height-720,resizemode-4/108824901.jpg');
+
+    background-size: cover;
+    background-position: center;
+
+    display: flex;
+    align-items: flex-end;
+    padding: 20px;
+}
+
+.hero h1 {
+    font-size: 28px;
+    background: rgba(0,0,0,0.6);
+    padding: 10px 15px;
+    border-radius: 10px;
+}
+
+/* CONTROLS */
+.controls {
+    margin: 20px;
+}
+
+select, button {
+    padding: 8px;
+    margin-right: 10px;
+    border-radius: 6px;
+    border: none;
+    background: #1f2937;
+    color: white;
+    cursor: pointer;
+}
+
+/* SECTION TITLE */
+.section-title {
+    margin-left: 20px;
+    font-size: 20px;
+    color: #38bdf8;
+}
+
+/* GRID LAYOUT */
+#animeContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+/* CARD */
+.card {
+    background-color: #111827;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+
+/* HOVER EFFECT */
+.card:hover {
+    transform: translateY(-8px);
+}
+
+/* IMAGE */
+.card img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    border-bottom: 1px solid #222;
+}
+
+/* CARD CONTENT */
+.card-content {
+    padding: 10px;
+}
+
+.card h3 {
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+.rating {
+    color: #facc15;
+    font-weight: bold;
+}
+/* ================= RESPONSIVENESS ================= */
+
+/* Tablets */
+@media (max-width: 900px) {
+    .navbar {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+
+    .navbar input {
+        width: 80%;
+    }
+
+    .hero {
+        height: 220px;
+        padding: 15px;
+    }
+
+    .hero h1 {
+        font-size: 22px;
+    }
+
+    #animeContainer {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .navbar {
+        padding: 10px;
+    }
+
+    .navbar h2 {
+        font-size: 18px;
+    }
+
+    .navbar input {
+        width: 100%;
+    }
+
+    .navbar button {
+        width: 100%;
+    }
+
+    .controls {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+
+    select, button {
+        width: 90%;
+    }
+
+    .hero {
+        height: 180px;
+        margin: 10px;
+    }
+
+    .hero h1 {
+        font-size: 18px;
+        padding: 8px;
+    }
+
+    #animeContainer {
+        grid-template-columns: 1fr;
+        padding: 10px;
+    }
+
+    .card img {
+        height: 220px;
+    }
+}
