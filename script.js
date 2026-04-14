@@ -2,9 +2,11 @@ const searchInput = document.getElementById("searchInput");
 const searchBtn = document.getElementById("searchBtn");
 const container = document.getElementById("animeContainer");
 const genreSelect = document.getElementById("genreFilter");
+const modal = document.getElementById("trailerModal");
+const trailerContainer = document.getElementById("trailerContainer");
+const closeBtn = document.querySelector(".close-btn");
 
 let allAnime = [];
-
 
 async function getAnime() {
     let res = await fetch("https://api.jikan.moe/v4/top/anime");
@@ -23,16 +25,43 @@ function displayAnime(animeList) {
         card.classList.add("card");
 
         card.innerHTML = `
-            <img src="${anime.images.webp.large_image_url}" />
-            <div class="card-content">
-                <h3>${anime.title}</h3>
-                <p class="rating">⭐ ${anime.score}</p>
-            </div>
-        `;
+            
+    <img src="${anime.images.webp.large_image_url}" />
+    <div class="card-content">
+        <h3>${anime.title}</h3>
+        <p class="rating">⭐ ${anime.score}</p>
+
+        <button class="trailerBtn">▶ Watch Trailer</button>
+    </div>
+`;let btn = card.querySelector(".trailerBtn");
+
+btn.addEventListener("click", () => {
+    let embedUrl = anime.trailer ? anime.trailer.embed_url : null;
+
+    if (embedUrl) {
+        trailerContainer.innerHTML = `<iframe src="${embedUrl}" allowfullscreen></iframe>`;
+        modal.style.display = "flex";
+    } else {
+        alert("Trailer not available");
+    }
+});
 
         container.appendChild(card);
     });
 }
+
+/* MODAL CLOSE */
+closeBtn.addEventListener("click", () => {
+    modal.style.display = "none";
+    trailerContainer.innerHTML = ""; // Stop video playback
+});
+
+window.addEventListener("click", (e) => {
+    if (e.target === modal) {
+        modal.style.display = "none";
+        trailerContainer.innerHTML = ""; // Stop video playback
+    }
+});
 
 /*  GENRE FILTER */
 genreSelect.addEventListener("change", () => {
@@ -62,7 +91,8 @@ searchBtn.addEventListener("click", async () => {
     let res = await fetch(`https://api.jikan.moe/v4/anime?q=${query}`);
     let data = await res.json();
 
-    displayAnime(data.data);
+    allAnime = data.data; // Update global state
+    displayAnime(allAnime);
 });
 
 /* ⌨ ENTER KEY SEARCH */
